@@ -1,11 +1,10 @@
 require 'spec_helper'
 
-describe "ProjectPages" do
-	subject { page }
-  describe "home page" do
-    before{ visit root_path}
-    before { click_link("New Projects") }
+describe "creating a new Project" do
+it "it should have the right content" do
+  visit new_project_url
+  page.should have_selector('h2', text: "New Project" )
+  click_link "New Project"
 
-    it {should have_content("New Project") }
-  end
+end
 end

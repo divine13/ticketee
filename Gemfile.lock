@@ -56,6 +56,8 @@ GEM
     diff-lcs (1.2.4)
     erubis (2.7.0)
     execjs (2.0.1)
+    factory_girl (4.2.0)
+      activesupport (>= 3.0.0)
     gherkin (2.12.1)
       multi_json (~> 1.3)
     hike (1.2.3)
@@ -150,6 +152,7 @@ DEPENDENCIES
   cucumber
   cucumber-rails
   database_cleaner
+  factory_girl
   jbuilder
   jquery-rails
   rails (= 4.0.0)

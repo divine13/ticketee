@@ -1,5 +1,6 @@
-	<li>
+<% @title = "home-tiketee"%>	
+<li>
 <% @project.each do |p| %>
-<%= p.name %>
+<%= link_to p.name, p  %>
 <% end %>
 </li>
