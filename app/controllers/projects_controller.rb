@@ -1,5 +1,6 @@
 class ProjectsController < ApplicationController
-	def index 
+
+	def index #CRUD ALWAYS FOLLOWS CRUD STEPS Dry code!
 		@project = Project.all
 	end
 	def new 
@@ -14,10 +15,32 @@ class ProjectsController < ApplicationController
 	   	render 'new'
 	   	end
 	end
+
+    def show
+    	@project = find_project
+    end
+
+    def edit 
+    	@project = find_project
+    end
+
+    def update
+    	@project = find_project
+    	if(@project.update_attributes(project_params))
+    	flash[:notice] = "project succesfully updated"
+    	redirect_to @project
+    else
+    	flash[:alert] = "project has not been update because:"
+    	render 'edit'
+    end
+    end
+
+
+    #rails 4 requirements for a better
 	 def project_params
       params.require(:project).permit(:name)
     end
-    def show
-    	@project = Project.find(params[:id])
+    def find_project
+    	Project.find(params[:id])
     end
 end

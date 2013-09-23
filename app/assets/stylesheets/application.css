@@ -178,3 +178,7 @@ menu, #ticket .state, .states {
 .comment, .new_comment {
     width: 75%;
 }
+.error{
+    padding: 10px;
+    color: red;
+}
