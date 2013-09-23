@@ -2,3 +2,5 @@
 <h2>My Project</h2>
 <li><%= @project.name %></li>
 <%= link_to("Edit Project", edit_project_path(@project)) %>
+<%= link_to("delete project", @project, method: :delete, 
+	         confirm: "are you sure mate") %>

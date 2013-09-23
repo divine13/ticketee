@@ -35,6 +35,13 @@ class ProjectsController < ApplicationController
     end
     end
 
+    def destroy
+    	@project = find_project
+    	@project.destroy
+    	flash[:alert] = "#{@project.name} project has been deleted"
+    	redirect_to projects_path
+    end
+
 
     #rails 4 requirements for a better
 	 def project_params
