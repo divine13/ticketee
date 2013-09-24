@@ -1,14 +1,12 @@
 require 'spec_helper'
 
-describe "creating a new Project" do
-it "it should have the right content" do
-  visit new_project_url
-  page.should have_selector('h2', text: "New Project" )
+describe "description" do
+	subject { page }
+describe "home" do
+	before{ Factory.create(:project)}
+  it "shoule have the projects links" do
+    visit_path root_path
+    click_link("Tiketee")
+  end
 end
-end
-
-describe "when filing in name " do
-	before {Factory.create(:project)}
-  it { should be_valid}
-  it { should have_content("project has been succesfuly created")}
 end

@@ -14,8 +14,8 @@ class ProjectsController < ApplicationController
 	def create        #it process those newly created objects 
 		@project = Project.new(project_params) #it injects those objects into the DB
 		if @project.save #true or false . true! it must or it will blow 
+        flash[:notice] = "project has been created"
 		redirect_to @project
-		flash[:notice] = "project has been created"
 	   else
 	   	render 'new' #it blows to this  
 	   	end
@@ -52,7 +52,7 @@ class ProjectsController < ApplicationController
     end
 private
     def find_project #the magic happens here
-    	@project = Project.find(params[:id])
+    	@project = Project.find(params[:id]) # found the spell this is refering to the id in the database. so its actually take id from the  browser and find that project using that id. sweeft! nice
     rescue ActiveRecord::RecordNotFound
     	flash[:alert] = "Sorry!, The page you are looking for is not available"
     	redirect_to root_path

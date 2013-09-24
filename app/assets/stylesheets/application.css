@@ -182,3 +182,14 @@ menu, #ticket .state, .states {
     padding: 10px;
     color: red;
 }
+.header{
+    position: fixed-top;
+    width: 100%;
+    height: 50px;
+    padding: 15px;
+    background: red;
+    border: 1px solid #e0e0e0;
+    
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+}

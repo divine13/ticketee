@@ -1,7 +1,7 @@
 <% if object.errors.any? %>
-<% object.errors.each do |msg| %>
 <p class="flash" id="alert">the form has the following <%= pluralize(object.errors.count, "error") %> </p><br >
-	<div class="error">*<%= msg %> is missing</div>
+<% object.errors.full_messages.each do |msg| %>
+	<div class="error">*<%= msg %></div>
 <% end %>
 <% end %>
 

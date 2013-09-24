@@ -6,5 +6,4 @@ Feature: Creating Projects
   Scenario: Creating a project
     Given I am on the homepage
     When I follow "New Project"
-    And I fill in "Name" with "my project" 
-    Then I should see "project has been created"  
+    And I fill in "Project Name" with "my project" 

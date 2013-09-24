@@ -4,7 +4,7 @@ Feature: Viewing projects
   I want to be able to list all available projects
 
   Scenario: List all projects 
-    Given there is a project called "TextMate" 
+    Given there is a project
     And I am at the home page 
-    When I follow "TextMate"
-    Then I should be on the project page for "TextMate"
+    When I follow "divine"
+    Then I should be on the project page for "divine"
