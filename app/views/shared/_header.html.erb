@@ -1,3 +1,10 @@
-<nav><h1><%= link_to("Ticketee", root_path) %>
-<div align="left"><%= link_to("Sign up", new_user_registration_path) %></div>
+<nav class="header"><h1><%= link_to("Ticketee", root_path) %>
+	<% if user_signed_in? %>
+	<small class="sml">You are signed in as <%= current_user.email %></small>
+	<% else %>
+<div align="left"><%= link_to("Sign up", new_user_registration_path) %>
+or <%= link_to("sign in", new_user_session_path) %>
+</div>
+
+<% end %>
 </nav>
