@@ -1,5 +1,7 @@
 class ProjectsController < ApplicationController
 
+    before_filter :authenticate_user!, except: [:index, :show]
+
      #heavily commented just to make sure everything i am on right ._path
 
     before_filter :find_project, only: [:show, :edit, :update, :destroy] #DRY! 100%
