@@ -38,13 +38,14 @@ end
 	end 
   end
   def destroy
-  	if @user == current_user
-  		flash[:alert] = "God wants you to live.you can not kill your self.butyou can ask the ruthless admin to kill you "
+  	if @user == current_user #
+  		flash[:alert] = "God wants you to live.you can not kill your self.but you can ask the ruthless admin to kill you "
   	else
   	@user.destroy
   	flash[:notice] = "user has been eliminated"
   	redirect_to admin_user_path
   end
+end
 #--------------------------private methods------------------------------------------  
 private
   def user_params
