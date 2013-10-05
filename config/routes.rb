@@ -1,4 +1,12 @@
 TeketeeApp::Application.routes.draw do
+
+  namespace :admin do
+      # Directs /admin/users/* to Admin::UsersController
+      # (app/controllers/admin/users_controller.rb)
+      root to: "base#index"
+      resources :users
+    end
+
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -6,7 +14,7 @@ TeketeeApp::Application.routes.draw do
   # You can have the root of your site routed with "root"
 
 
-   root 'projects#index'
+   root to: 'projects#index'
    resources :projects do 
     resources :tickets
    end
@@ -57,10 +65,7 @@ TeketeeApp::Application.routes.draw do
   #   resources :posts, concerns: :toggleable
   #   resources :photos, concerns: :toggleable
 
-  # Example resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
+#  Example resource route within a namespace:
+ # get "users/index"
+
 end
