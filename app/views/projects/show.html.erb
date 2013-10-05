@@ -1,9 +1,13 @@
 <% title(@project.name, "project") %>
 <h2>My Project</h2>
 <li><%= @project.name %></li>
+<%= admins_only do %>
+
 <%= link_to("Edit Project", edit_project_path(@project)) %>
 <%= link_to("delete project", @project, method: :delete, 
 	         confirm: "are you sure mate") %>
+
+<% end -%>
 <%= link_to("New Ticket", new_project_ticket_path(@project)) %>	 
 <%# i passed the @project to the nested route because i want create%>
 <%# a new ticket belonging to a project association it wants  %>
