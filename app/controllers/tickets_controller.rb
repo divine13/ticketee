@@ -36,6 +36,7 @@ class TicketsController < ApplicationController
 		flash[:alert] = "ticket deleted"
 		redirect_to @project
 	end
+#---------------------------------private methods---------------------------------------------
 private
 	 def find_project
 	 	@project = Project.find(params[:project_id]) #this is referring to the foreign key that in the database
