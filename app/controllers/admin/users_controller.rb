@@ -1,5 +1,5 @@
 class Admin::UsersController < Admin::BaseController
-	before_filter :find_user, only: [:show, :edit, :delete, :update] #CRUD
+	before_filter :find_user, only: [:show, :edit, :update, :destroy] #CRUD
   def index
   	@users = User.all(order: :email)
   end
@@ -36,6 +36,14 @@ end
 			flash[:alert] = "could not update user"
 			render :edit
 	end 
+  end
+  def destroy
+  	if @user == current_user
+  		flash[:alert] = "God wants you to live.you can not kill your self.butyou can ask the ruthless admin to kill you "
+  	else
+  	@user.destroy
+  	flash[:notice] = "user has been eliminated"
+  	redirect_to admin_user_path
   end
 #--------------------------private methods------------------------------------------  
 private
