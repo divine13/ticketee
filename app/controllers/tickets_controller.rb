@@ -2,6 +2,7 @@ class TicketsController < ApplicationController
 	before_filter :authenticate_user!
 	before_filter :find_project
 	before_filter :find_ticket, only: [:show, :edit, :update, :destroy]
+	before_filter :authorize_create!, only: [:new, :create]
 
 	def new
 	   @ticket = @project.tickets.build()
@@ -36,10 +37,10 @@ class TicketsController < ApplicationController
 		flash[:alert] = "ticket deleted"
 		redirect_to @project
 	end
-#---------------------------------private methods---------------------------------------------
+#---------------------------------private methods----------------------------------
 private
 	 def find_project
-	 	@project = Project.for(current_user).(params[:project_id]) #this is referring to the foreign key that in the database
+	 	@project = Project.for(current_user).find(params[:project_id]) #this is referring to the foreign key that in the database
 		rescue ActiveRecord::RecordNotFound
     	flash[:alert] = "The project you are looking for does not exist"
     	redirect_to root_path	 	
@@ -54,4 +55,17 @@ private
 		@ticket = @project.tickets.find(params[:id])
 
 	end
+	#the @project var comes from the find_project method
+	def authorize_create!
+		if !current_user.admin? && cannot?("create tickets".to_sym, @project)
+			flash[:alert] = "you cannot create tickets for this project ask admin for help"
+			redirect_to @project
+		end
+	end
+	def authorize_update 
+		if !current_user.admin? && cannot?("update tickets".to_sym, @project)
+			flash[:alert] = "you cannot update this project tickets"
+			redirect_to @project
+	end
+
 end

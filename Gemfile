@@ -3,8 +3,7 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
 gem 'devise', '3.1.1'
-gem 'email_spec'
-
+gem 'cancan', '1.6.10'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 
@@ -44,6 +43,7 @@ group :test do
 	gem 'capybara'
 	gem 'database_cleaner'
 	gem 'factory_girl'
+	gem 'email_spec'
 end
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
