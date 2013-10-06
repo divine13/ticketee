@@ -3,11 +3,11 @@ class ProjectsController < ApplicationController
     before_filter :authorize_admin!, except: [:index, :show]
 
      #heavily commented just to make sure everything i am on right ._path
-    before_filter :authenticate_user!, only: [:show]
+    before_filter :authenticate_user!, only: [:index, :show]
     before_filter :find_project, only: [:show, :edit, :update, :destroy] #DRY! 100%
 
 	def index    #CRUD. ALWAYS FOLLOW CRUD STEPS. DRY code!, nice...
-		@project = Project.all
+		@project = Project.for(current_user).all
 	end
 	def new    #this method passes the newly created object to the create method 
 		@project = Project.new #it carries the params to the create  method
@@ -29,10 +29,11 @@ class ProjectsController < ApplicationController
     end
 
     def edit 
+
     end
 
     def update
-    	if(@project.update_attributes(project_params))
+    if(@project.update_attributes(project_params))
     	flash[:notice] = "project has been updated"
     	redirect_to @project
     else
@@ -46,22 +47,17 @@ class ProjectsController < ApplicationController
     	flash[:alert] = "#{@project.name} project has been deleted"
     	redirect_to projects_path
     end
-
-
-    #rails 4 requirements for better security
-	 def project_params
-      params.require(:project).permit(:name)
-    end
 #---------------------private methods--------------------------
 private
-    def find_project #the magic happens here
-        @project = if current_user.admin?
-            Project.find(params[:id])
-        else
-    Project.readable_by(current_user).find(params[:id])
-end
-    rescue ActiveRecord::RecordNotFound
-    	flash[:alert] = "Sorry!, The page you are looking for is not available"
-    	redirect_to root_path
+    #rails 4 requirements for better security
+     def project_params
+      params.require(:project).permit(:name)
     end
-end
+    def find_project #the magic happens here
+       @project =  Project.for(current_user).find(params[:id])
+    end
+    # rescue ActiveRecord::RecordNotFound
+    # 	flash[:alert] = "Sorry!, The page you are looking for is not available"
+    # 	redirect_to root_path
+    end
+

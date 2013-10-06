@@ -9,4 +9,8 @@ class Project < ActiveRecord::Base
 	#this method finds users projects with the action = view 
 	scope :readable_by, lambda { |user| joins(:permissions).where(permissions:
 	 { action: "view", user_id: user.id}) }
+
+	def self.for(user)
+		user.admin? ? Project : Project.readable_by(user)
+	end
 end
