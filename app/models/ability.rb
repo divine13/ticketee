@@ -2,12 +2,12 @@ class Ability
 	include CanCan::Ability
 
 	def initialize(user)
-		user.permisions.each do |user|
+		user.permissions.each do |user|
 			can user.action.to_sym,
-			user.thing_type.constatize do |thing|
+			user.thing_type.constantize do |thing|
 				thing.nil? ||
 				user.thing_id.nil? ||
-				user.thing_id = thimg.thing_id
+				user.thing_id == thing.id
 			end
 		end
 	end
