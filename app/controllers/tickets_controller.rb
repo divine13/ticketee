@@ -1,5 +1,5 @@
 class TicketsController < ApplicationController
-	before_filter :authenticate_user!, except: [:index, :show]
+	before_filter :authenticate_user!
 	before_filter :find_project
 	before_filter :find_ticket, only: [:show, :edit, :update, :destroy]
 
@@ -39,7 +39,10 @@ class TicketsController < ApplicationController
 #---------------------------------private methods---------------------------------------------
 private
 	 def find_project
-	 	@project = Project.find(params[:project_id]) #this is referring to the foreign key that in the database
+	 	@project = Project.for(current_user).(params[:project_id]) #this is referring to the foreign key that in the database
+		rescue ActiveRecord::RecordNotFound
+    	flash[:alert] = "The project you are looking for does not exist"
+    	redirect_to root_path	 	
 	 end
 
 	 def ticket_params
@@ -49,5 +52,6 @@ private
 
 	 def find_ticket
 		@ticket = @project.tickets.find(params[:id])
+
 	end
 end
