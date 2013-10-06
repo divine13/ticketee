@@ -14,7 +14,7 @@ class Admin::UsersController < Admin::BaseController
 	  set_admin
 	  if @user.save
 	  flash[:notice] = "users has been created "
-	  redirect_to admin_user_path
+	  redirect_to admin_users_path
  else 
 	flash[:alert] = "users could not be created "
 	render 'new' #if it does not work try adding action: 'new' 
@@ -38,15 +38,15 @@ end
 	end 
   end
   def destroy
-  	if @user == current_user #
+  	if @user == current_user # bullet proof .curl?
   		flash[:alert] = "God wants you to live.you can not kill your self.but you can ask the ruthless admin to kill you "
   	else
   	@user.destroy
   	flash[:notice] = "user has been eliminated"
-  	redirect_to admin_user_path
+  	redirect_to admin_users_path
   end
 end
-#--------------------------private methods------------------------------------------  
+#--------------------------private methods--------------------------  
 private
   def user_params
   	params.require(:user).permit(:email, :password, :password_confirmation)
@@ -55,7 +55,7 @@ private
   	@user = User.find(params[:id])
   end
   def set_admin
-  	 @user.admin = params([:user][:admin] == "1") #DBG change user to user_params
+  	 @user.admin = user_params[:admin] = "1" #DBG change user to user_params
   end
   # def admin_attr
   #     uprms = params.require(:user).permit(:email, :password, :password_confirmation)

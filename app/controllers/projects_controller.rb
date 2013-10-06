@@ -3,7 +3,7 @@ class ProjectsController < ApplicationController
     before_filter :authorize_admin!, except: [:index, :show]
 
      #heavily commented just to make sure everything i am on right ._path
-
+    before_filter :authenticate_user!, only: [:show]
     before_filter :find_project, only: [:show, :edit, :update, :destroy] #DRY! 100%
 
 	def index    #CRUD. ALWAYS FOLLOW CRUD STEPS. DRY code!, nice...
@@ -52,12 +52,16 @@ class ProjectsController < ApplicationController
 	 def project_params
       params.require(:project).permit(:name)
     end
+#---------------------private methods--------------------------
 private
     def find_project #the magic happens here
-    	@project = Project.find(params[:id]) # found the spell this is refering to the id in the database. so its actually take id from the  browser and find that project using that id. sweeft! nice
+        @project = if current_user.admin?
+            Project.find(params[:id])
+        else
+    Project.readable_by(current_user).find(params[:id])
+end
     rescue ActiveRecord::RecordNotFound
     	flash[:alert] = "Sorry!, The page you are looking for is not available"
     	redirect_to root_path
-
     end
 end

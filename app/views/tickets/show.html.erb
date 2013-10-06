@@ -3,7 +3,7 @@
 
 <li id="ticket"> #<%=  tkt.id  %> -<%= link_to(tkt.title, [@project, tkt]) %>
 <small>Created by <%= tkt.user.email %></small>
-<%= simple_format(@ticket.description) %>
+<%= simple_format(tkt.description) %>
 <%= link_to("Edit Ticket", [:edit, @project, @ticket]) %>
 <%= link_to("Delete Ticket", [@project, @ticket], method: :delete, confirm: "are you sure mate") %>
 </li>
