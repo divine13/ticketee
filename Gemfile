@@ -4,6 +4,8 @@ source 'https://rubygems.org'
 gem 'rails', '4.0.0'
 gem 'devise', '3.1.1'
 gem 'cancan', '1.6.10'
+
+gem 'paperclip', '3.5.1'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 

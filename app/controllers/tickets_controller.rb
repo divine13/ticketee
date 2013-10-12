@@ -48,13 +48,13 @@ private
 	 end
 
 	 def ticket_params
-	 	prms = params.require(:ticket).permit(:title, :description, :project_id) 
+	 	prms = params.require(:ticket).permit(:title, :description, :project_id, :asset) 
 	 	prms.merge!(user: current_user)
 	 end
 
 	 def find_ticket
 		@ticket = @project.tickets.find(params[:id])
-
+		#@ticket = para
 	end
 	#the @project var comes from the find_project method
 	def authorize_create!
