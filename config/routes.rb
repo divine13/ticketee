@@ -4,8 +4,12 @@ TeketeeApp::Application.routes.draw do
       # Directs /admin/users/* to Admin::UsersController
       # (app/controllers/admin/users_controller.rb)
       root to: "base#index"
-      resources :users
+      resources :users do 
+        resources :permissions
+      end
     end
+    put "admin/users/:user_id/permissions", to: 
+     'admin/permissions#update', as: 'update_user_permissions'
 
   devise_for :users, controller: { registrations: "registrations" } 
 

@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
 
          has_many :permissions
 
-          #  .print email   .if admin put admin
+          # print email |  if admin put admin else put User
          def to_s
          	"#{email} (#{admin? ? "Admin" : "User"})" 
          end

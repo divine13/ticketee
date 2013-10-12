@@ -55,7 +55,7 @@ private
   	@user = User.find(params[:id])
   end
   def set_admin
-  	 @user.admin = user_params[:admin] = "1" #DBG change user to user_params
+  	 @user.admin = user_params[:admin] == "1" #DBG change user to user_params
   end
   # def admin_attr
   #     uprms = params.require(:user).permit(:email, :password, :password_confirmation)

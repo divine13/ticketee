@@ -56,7 +56,7 @@ private
     def find_project #the magic happens here
        @project =  Project.for(current_user).find(params[:id])
     rescue ActiveRecord::RecordNotFound
-    	flash[:alert] = "Sorry!, The page you are looking for is not available"
+    	flash[:alert] = "Sorry..., The page you are looking for is not available"
     	redirect_to root_path
     end
     end

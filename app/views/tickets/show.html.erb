@@ -4,12 +4,12 @@
 <li id="ticket"> #<%=  tkt.id  %> -<%= link_to(tkt.title, [@project, tkt]) %>
 <small>Created by <%= tkt.user.email %></small>
 <%= simple_format(tkt.description) %>
-<%# authorized?("edit tickets", @project) do %>
+<%= authorized?("edit tickets", @project) do %>
 <%= link_to("Edit Ticket", [:edit, @project, @ticket]) %>
-<%# end %>
-<%# authorized?("delete tickets", @project) do %>
+<% end %>
+<%= authorized?("delete tickets", @project) do %>
 <%= link_to("Delete Ticket", [@project, @ticket], method: :delete, confirm: "are you sure mate") %>
-<%#end %>
+<% end %>
 </li>
 <% end %>
 </ul>

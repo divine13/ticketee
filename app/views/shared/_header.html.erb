@@ -1,11 +1,13 @@
 <nav class="header"><h1><%= link_to("Ticketee", root_path) %>
 	<% if user_signed_in? %>
-	<small class="sml">You are signed in as <%= current_user.email %></small>
+	<small class="sml">You are signed in as <%= current_user.email %>
+		<%= link_to("Sign out", destroy_user_session_path, method: :delete) %>
+	</small>	
 	<%= admins_only do %>
-	<%= link_to("Admin", admin_root_path) %>
-	<% end -%>
+	<small class="sml"><%= link_to("Admin", admin_root_path) %></small>
+	<% end %>
 	<% else %>
-<div align="center"><%= link_to("Sign up", new_user_registration_path) %>
+<div class="sml" align="center"><%= link_to("Sign up", new_user_registration_path) %>
 or <%= link_to("sign in", new_user_session_path) %>
 </div>
 <% end %>
