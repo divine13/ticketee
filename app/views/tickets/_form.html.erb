@@ -2,16 +2,28 @@
 <%= form_for([@project, @ticket], html: { multipart: true } ) do |f| %>
 <p>
 <%= render 'shared/error_messages', object: f.object %>
+
+
+
 <%= f.label(:title) %>
 <%= f.text_field(:title) %>
 
 <%= f.label(:description) %>
 <%= f.text_area(:description) %>
 </p>
+
+
 <p>
-<%= f.label(:asset, "File") %>
-<%= f.file_field(:asset) %>
+	<% number = 0 %>
+<%= f.fields_for :assets do |asset| %>
+<%= asset.label(:asset, "File ##{number += 1}") %>
+<%= asset.file_field(:asset) %>
 </p>
+<% end %>
+
+
+
+
 <%= f.submit %>
 <% end %>
 </div>

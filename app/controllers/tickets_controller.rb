@@ -6,7 +6,8 @@ class TicketsController < ApplicationController
 	before_filter :authorize_update, only: [:update]
 
 	def new
-	   @ticket = @project.tickets.build()
+	   @ticket = @project.tickets.build
+	   3.times { @ticket.assets.build}
 	end
 
 	def create 
@@ -41,14 +42,16 @@ class TicketsController < ApplicationController
 #---------------------------------private methods----------------------------------
 private
 	 def find_project
-	 	@project = Project.for(current_user).find(params[:project_id]) #this is referring to the foreign key that in the database
+	 	#this is referring to the foreign key that in the database
+	 	@project = Project.for(current_user).find(params[:project_id]) 
 		rescue ActiveRecord::RecordNotFound
     	flash[:alert] = "The project you are looking for does not exist"
     	redirect_to root_path	 	
 	 end
 
 	 def ticket_params
-	 	prms = params.require(:ticket).permit(:title, :description, :project_id, :asset) 
+	 	#params.require(:assets).permit(:all)
+	 	prms = params.require(:ticket).permit! #permit(:title, :description, :project_id) 
 	 	prms.merge!(user: current_user)
 	 end
 
