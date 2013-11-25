@@ -18,4 +18,6 @@
 /public/system
 # Ignore idea files
 /.idea
+#ignore upladed files
+/files
 
