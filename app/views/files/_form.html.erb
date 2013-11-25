@@ -1,0 +1,32 @@
+<div class="textarea">
+<%= form_for([@project, @ticket], html: { multipart: true } ) do |f| %>
+<p>
+<%= render 'shared/error_messages', object: f.object %>
+
+
+
+<%= f.label(:title) %>
+<%= f.text_field(:title) %>
+
+<%= f.label(:description) %>
+<%= f.text_area(:description) %>
+</p>
+
+	<div id="files">
+	<%= fields_for @ticket do |f| %>
+<%= f.fields_for :assets, child_index: number  do |asset| %>
+ <p>
+<%= asset.label(:asset, "File ##{number += 1}") %>
+<%= asset.file_field(:asset) %>
+ </p>
+</div>
+<% end %>
+<% end -%>
+<%= link_to "add another file", new_file_path, remote: true, update: "files", 
+position: "after" %>
+
+
+
+<%= f.submit %>
+<% end %>
+</div>

@@ -13,7 +13,7 @@ class Admin::PermissionsController < Admin::BaseController
 				Permission.create!(user: @user, thing: project, action: permission)
 			end
 		end
-		flash[:notice] = "user attributes has been updated"
+		flash[:notice] = "user attributes has been updated "
 		redirect_to admin_user_permissions_path
 	end
 #------------------private methods---------------------

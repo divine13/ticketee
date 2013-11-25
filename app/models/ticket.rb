@@ -1,7 +1,7 @@
 class Ticket < ActiveRecord::Base
 
 	validates(:title, presence: true)
-	validates(:description, presence: true, length: { minimum: 10 })
+	validates(:description, presence: true, length: { minimum: 5 })
 
     belongs_to(:project, dependent: :destroy)
     belongs_to(:user)

@@ -2,11 +2,11 @@ class ProjectsController < ApplicationController
 
     before_filter :authorize_admin!, except: [:index, :show]
 
-     #heavily commented just to make sure i am on right ._path
+     #heavily commented just to make sure i am on right path
     before_filter :authenticate_user!, only: [:index, :show]
     before_filter :find_project, only: [:show, :edit, :update, :destroy] #DRY! 100%
 
-	def index    #CRUD. ALWAYS FOLLOW CRUD STEPS. DRY code!, nice...
+	def index    #CRUD. ALWAYS FOLLOW CRUD STEPS. DRY code!, n...ice...
 		@project = Project.for(current_user).all
 	end
 	def new    #this method passes the newly created object to the create method 

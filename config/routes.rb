@@ -1,5 +1,4 @@
 TeketeeApp::Application.routes.draw do
-
   namespace :admin do
       # Directs /admin/users/* to Admin::UsersController
       # (app/controllers/admin/users_controller.rb)
@@ -20,7 +19,7 @@ TeketeeApp::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
 
-
+    resources :files
    root to: 'projects#index'
    resources :projects do 
     resources :tickets

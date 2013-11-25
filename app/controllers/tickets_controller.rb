@@ -3,11 +3,11 @@ class TicketsController < ApplicationController
 	before_filter :find_project
 	before_filter :find_ticket, only: [:show, :edit, :update, :destroy]
 	before_filter :authorize_create!, only: [:new, :create]
-	before_filter :authorize_update, only: [:update]
+	before_filter :authorize_update, only: [:edit, :update,]
 
 	def new
 	   @ticket = @project.tickets.build
-	   3.times { @ticket.assets.build}
+	   @ticket.assets.build
 	end
 
 	def create 
@@ -67,13 +67,13 @@ private
 		end
 	end
 	def authorize_update 
-		if !current_user.admin? && cannot?("update tickets".to_sym, @project)
+		if !current_user.admin? && cannot?(:"edit tickets".to_sym, @project)
 			flash[:alert] = "you cannot update this project tickets"
 			redirect_to @project
 		end
 	end
 	def authorize_delete
-		if !current_user.admin && cannot?("delete tickets".to_sym, @project)
+		if !current_user.admin && cannot?(:"delete tickets".to_sym, @project)
 			flash[:alert] = "you cannot delete this project tickets"
 			reidrect_to @project
  	end

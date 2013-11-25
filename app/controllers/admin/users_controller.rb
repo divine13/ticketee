@@ -21,7 +21,7 @@ class Admin::UsersController < Admin::BaseController
 	end
 end
 	def edit 
-		#only need to find user here but imoved to before_filter 0_o!
+		#only need to find user here but i moved to before_filter 0_o!
 	end
 	def update 
 		#the find user method is called here thats were the @user method comes from
