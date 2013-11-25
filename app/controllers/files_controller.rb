@@ -3,7 +3,6 @@ class FilesController < ApplicationController
 	def new
 		@ticket = Ticket.new
 		asset = @ticket.assets.build
-		asset = Asset.new
 		render partial: "files/form", locals: {number: params[:number].to_i, asset: asset}
 	end 
 	def show
@@ -17,3 +16,4 @@ class FilesController < ApplicationController
          end	
 	end
 end
+				
