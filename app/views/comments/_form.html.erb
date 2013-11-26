@@ -1,0 +1,8 @@
+<strong>New Comment</strong>
+<%= form_for [@ticket, @comment] do |f|%>
+<%= render "shared/error_messages", object: f.object %>
+<%= f.label :text %>
+<%= f.text_area :text %>
+
+<%= f.submit %>
+<% end %>

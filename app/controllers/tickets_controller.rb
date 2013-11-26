@@ -22,6 +22,7 @@ class TicketsController < ApplicationController
 
 	def show 
        #here we just put the find_ticket associated with a proje
+       @comment = @ticket.comments.build
 	end
 	def edit
 	end
