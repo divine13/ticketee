@@ -3,8 +3,9 @@ class Ticket < ActiveRecord::Base
 	validates(:title, presence: true)
 	validates(:description, presence: true, length: { minimum: 5 })
 
-    belongs_to(:project)
+    belongs_to(:state)
     belongs_to(:user)
+    belongs_to(:project)
 
     has_attached_file :asset
     has_many :assets

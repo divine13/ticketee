@@ -1,5 +1,5 @@
 require 'spec_helper'
 
-describe Ticket do
- 
+describe State do
+
 end

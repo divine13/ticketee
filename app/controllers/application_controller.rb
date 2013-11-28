@@ -10,4 +10,11 @@ class ApplicationController < ActionController::Base
   		redirect_to(root_path)
   	end
   end
+  def find_project
+    #this is referring to the foreign key that in the database
+    @project = Project.for(current_user).find(params[:project_id]) 
+    rescue ActiveRecord::RecordNotFound
+      flash[:alert] = "you messed up!"
+      redirect_to root_path   
+   end
 end

@@ -1,8 +1,13 @@
 <strong>New Comment</strong>
-<%= form_for [@ticket, @comment] do |f|%>
+<%= form_for [@project, @ticket, @comment] do |f|%>
 <%= render "shared/error_messages", object: f.object %>
+<p>
 <%= f.label :text %>
 <%= f.text_area :text %>
-
+</p>
+<p>
+<%= f.label :state_id %>
+<%= f.select :state_id, @states.map  { |s| [s.name, s.id] }, selected: @ticket.state_id %>
+</p>
 <%= f.submit %>
 <% end %>

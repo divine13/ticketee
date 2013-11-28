@@ -1,17 +1,17 @@
-== README
+== Ticketee App
 
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
-Things you may want to cover:
+Things to note:
 
-* Ruby version
+* Ruby 19.3, rails -v: 4.0.0
 
-* System dependencies
+* System dependencies: check Gemfile
 
-* Configuration
+* Configuration: no configs this is rails!
 
-* Database creation
+* Database creation: bundle exec rake db:seed
 
 * Database initialization
 

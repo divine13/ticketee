@@ -23,9 +23,12 @@ class TicketsController < ApplicationController
 	def show 
        #here we just put the find_ticket associated with a proje
        @comment = @ticket.comments.build
+       @states = State.all
 	end
+
 	def edit
 	end
+	
 	def update
 		if @ticket.update_attributes(ticket_params)
 		flash[:notice] = "your ticket has been updated "
@@ -42,14 +45,6 @@ class TicketsController < ApplicationController
 	end
 #---------------------------------private methods----------------------------------
 private
-	 def find_project
-	 	#this is referring to the foreign key that in the database
-	 	@project = Project.for(current_user).find(params[:project_id]) 
-		rescue ActiveRecord::RecordNotFound
-    	flash[:alert] = "The project you are looking for does not exist"
-    	redirect_to root_path	 	
-	 end
-
 	 def ticket_params
 	 	#params.require(:assets).permit(:all)
 	 	prms = params.require(:ticket).permit! #permit(:title, :description, :project_id) 

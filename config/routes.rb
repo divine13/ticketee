@@ -22,15 +22,11 @@ TeketeeApp::Application.routes.draw do
     resources :files
    root to: 'projects#index'
    resources :projects do 
-    resources :tickets
+    resources :tickets do 
+      resources :comments
+    end
    end
 
-resources :tickets do 
-  resources :comments
-end
-
-
-   
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
