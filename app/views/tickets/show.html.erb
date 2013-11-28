@@ -3,7 +3,7 @@
 
 <li id="ticket"> #<%=  tkt.id  %> -<%= link_to(tkt.title, [@project, tkt]) %>
 <small>Created by <%= tkt.user.email %></small>
-<%= render @ticket.state if @ticket.state  %>
+<%= render tkt.state if tkt.state  %>
 <%= simple_format(tkt.description) %>
 
 <% if(tkt.assets.exists?) %>

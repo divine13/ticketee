@@ -14,8 +14,6 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
-#ignore paperclip attachments
-/public/system
 # Ignore idea files
 /.idea
 #ignore upladed files
