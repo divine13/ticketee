@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131127073924) do
+ActiveRecord::Schema.define(version: 20131128151805) do
 
   create_table "assets", force: true do |t|
     t.string   "asset_file_name"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 20131127073924) do
     t.datetime "updated_at"
     t.integer  "state_id"
     t.integer  "project_id"
+    t.integer  "previous_state_id"
   end
 
   add_index "comments", ["project_id"], name: "index_comments_on_project_id"
