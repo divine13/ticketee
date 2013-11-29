@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
     #this is referring to the foreign key that in the database
     @project = Project.for(current_user).find(params[:project_id]) 
     rescue ActiveRecord::RecordNotFound
-      flash[:alert] = "you messed up!"
+      flash[:alert] = "sorry record not found make sure you have the right permissions"
       redirect_to root_path   
    end
 end
