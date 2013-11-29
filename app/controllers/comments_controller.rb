@@ -2,8 +2,12 @@ class CommentsController < ApplicationController
 	before_filter :authenticate_user!
 	before_filter :find_ticket
 	before_filter :find_pro
-	def create 
+
+	def create
 		@comment = @ticket.comments.build(comment_params)
+	    if cannot?(:"change states", @ticket.project)
+		    params[:comment].delete(:state_id)
+	    end
 		if @comment.save
 			flash[:notice] = "ticket has been commented"
 			redirect_to [@ticket.project, @ticket]
