@@ -20,6 +20,8 @@
 <% end %>
 <% end %>
 
+<div id="tags"><%= render tkt.tags %></tags>
+	
 <%= authorized?("edit tickets", @project) do %>
 <%= link_to("Edit Ticket", [:edit, @project, @ticket]) %>
 <% end %>
