@@ -26,7 +26,7 @@
 <%= link_to("Edit Ticket", [:edit, @project, @ticket]) %>
 <% end %>
 <%= authorized?("delete tickets", @project) do %>
-<%= link_to("Delete Ticket", [@project, tkt], method: :delete, confirm: "are you sure mate") %>
+<%= link_to("Delete Ticket", [@project, tkt], method: :delete, data: {confirm: "are you sure mate" } ) %>
 <% end %>
 </li>
 <% end %>

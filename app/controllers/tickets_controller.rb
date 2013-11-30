@@ -13,7 +13,11 @@ class TicketsController < ApplicationController
 	def create 
 		@ticket = @project.tickets.build(ticket_params)
 		if(@ticket.save)
+			if can?(:tag, @ticket.project) || current_user.admin?
 			@ticket.tag!(params[:tags])
+		else
+			flash[:alert] = "you don not have the right permissions to tag this ticket"
+		end
 			flash[:notice] = "ticket has been created"
 			redirect_to([@project, @ticket])
 		else

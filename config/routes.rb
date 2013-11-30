@@ -24,13 +24,23 @@ TeketeeApp::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
 
-    resources :files
+   resources :files
    root to: 'projects#index'
+
    resources :projects do 
-    resources :tickets do 
+   resources :tickets do 
       resources :comments
     end
-   end
+   end 
+
+    resources :tickets do 
+      resources :comments
+    resources :tags do
+      member do 
+          delete :remove
+        end
+      end
+    end
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

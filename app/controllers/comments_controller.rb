@@ -9,6 +9,11 @@ class CommentsController < ApplicationController
 		    params[:comment].delete(:state_id)
 	    end
 		if @comment.save
+			if can?(:tag, @ticket.project) || current_user.admin?
+			 @ticket.tag!(params[:tags])
+			else
+				flash[:alert] = "your tag will not show because you dont have the right permissions"
+			end
 			flash[:notice] = "ticket has been commented"
 			redirect_to [@ticket.project, @ticket]
 		else
